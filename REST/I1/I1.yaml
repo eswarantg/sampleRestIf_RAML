@@ -1,0 +1,105 @@
+#%RAML 0.8
+---
+title: "I1"
+version: v1
+mediaType: application/json
+schemas:
+  - doctor : !include ../../schemas/core/doctor.json 
+  - doctors : !include ../../schemas/core/doctors.json 
+  - patient : !include ../../schemas/core/patient.json 
+  - patients : !include ../../schemas/core/patients.json 
+  - errorType: !include ../../schemas/general/errorType.json
+baseUri: http://baseurl/I1/{version}
+/doctors: 
+  get:
+    responses:  
+      200: 
+        body: 
+          schema : doctors
+          example: !include ../../schemas/examples/core/doctors.json
+      204:
+        body: 
+          schema : errorType
+          example: !include ../../schemas/examples/general/nodoctors.json
+  post:
+    body:
+      schema: doctor
+      example: !include ../../schemas/examples/core/newdoctor.json
+    responses:
+      201:
+        headers:
+          Location:
+            type: string
+            description: /doctors/{generatedId}
+      209:
+        body:
+          schema: errorType
+          example: !include ../../schemas/examples/general/doctorWithNameAlreadyExists.json
+  /{doctorId} :
+    uriParameters:
+      doctorId: 
+        displayName: Doctor ID
+        type: integer
+    get: 
+      responses:  
+        200 : 
+          body: 
+            schema : doctor
+            example: !include ../../schemas/examples/core/doctor.json
+        404:
+          body: 
+            schema : errorType
+            example: !include ../../schemas/examples/general/nodoctor.json
+    post: 
+      body: 
+        schema: doctor
+        example: !include ../../schemas/examples/core/doctor.json
+      responses:
+        200:
+          body: 
+            schema : doctor
+            example: !include ../../schemas/examples/core/doctor.json
+        404:
+          body: 
+            schema : errorType
+            example: !include ../../schemas/examples/general/nodoctor.json        
+        209:
+          body:
+            schema: errorType
+            example: !include ../../schemas/examples/general/nameMisMatch.json
+    delete: 
+      responses:
+        200:
+          body: 
+            schema : doctor
+            example: !include ../../schemas/examples/core/doctor.json
+        404:
+          body: 
+            schema : errorType
+            example: !include ../../schemas/examples/general/nodoctor.json
+/patients : 
+  get:
+    responses:  
+      200: 
+        body: 
+          schema : patients
+          example: !include ../../schemas/examples/core/patients.json
+      204: 
+        body: 
+          schema : errorType
+          example: !include ../../schemas/examples/general/nopatients.json
+  /{patientId} : 
+    uriParameters:
+      patientId: 
+        displayName: Patient ID
+        type: integer
+    get: 
+      responses:  
+        200: 
+          body:    
+            schema : patient
+            example: !include ../../schemas/examples/core/patient.json
+        404:
+          body: 
+            schema : errorType
+            example: !include ../../schemas/examples/general/nopatient.json

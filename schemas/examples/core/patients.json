@@ -1,0 +1,23 @@
+{
+   "size" : 2,
+   "persons" : [
+		{
+		  "ID" : 100,
+		  "name" : "PQRS",
+		  "sex" : "Male",
+		  "diagnosis" : [
+			  "Fracture in left leg"
+			  ,"15 days rest"
+		  ]
+		}
+		,{
+		  "ID" : 101,
+		  "name" : "TUVW",
+		  "sex" : "Female",
+		  "diagnosis" : [
+			  "Hearing challenge for last 10 days"
+			  ,"Wax deposit found."
+		  ]
+		}
+   ]
+}

@@ -1,0 +1,17 @@
+{
+   "size" : 2,
+   "persons" : [
+		{
+		  "ID" : 1,
+		  "name" : "ABCD",
+		  "sex" : "Male",
+		  "specialization" : "Ortho"
+		}
+		,{
+		  "ID" : 2,
+		  "name" : "EFGH",
+		  "sex" : "Female",
+		  "specialization" : "ENT"
+		}
+   ]
+}
